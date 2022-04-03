@@ -63,10 +63,15 @@ A summary of the access policies in place can be found in the table below.
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it allows a consistent configuration. The Elk stack can be created and configured very quickly.
 
 The playbook implements the following tasks:
+
 -Configure maximum mapped memory with 'sysctl' module
+
 -Install 'docker.io' and 'python3-pip' packages with apt module
+
 -Install docker 'python' package with pip
+
 -Enable systemd docker service
+
 -Run ELK docker container
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
@@ -76,12 +81,14 @@ The following screenshot displays the result of running `docker ps` after succes
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
 
--Web-1:10.0.0.5
+ -Web-1:10.0.0.5
 - Web-2:10.0.0.9
 - Web-3:10.0.0.7 
 
 We have installed the following Beats on these machines:
+
 - Filebeat
+
 - Metricbeat
 
 These Beats allow us to collect the following information from each machine:
