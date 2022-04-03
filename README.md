@@ -6,10 +6,10 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _ansible_ file may be used to install only certain pieces of it, such as Filebeat.
 
-  ![DVWA Playbook](Ansible/Playbook_Files/dvwa-playbook.yml)
-  ![Elk-Stack Playbook](Ansible/Playbook_Files/elk-stack-playbook.yml)
-  ![Filebeat Playbook](Ansible/Playbook_Files/filebeat-playbook.yml)
-  ![Metricbeat Playbook](Ansible/Playbook_Files/metricbeat-playbook.yml)
+  ![DVWA Playbook](ansible/Playbook_Files/dvwa-playbook.yml)
+  ![Elk-Stack Playbook](ansible/Playbook_Files/elk-stack-playbook.yml)
+  ![Filebeat Playbook](ansible/Playbook_Files/filebeat-playbook.yml)
+  ![Metricbeat Playbook](ansible/Playbook_Files/metricbeat-playbook.yml)
 
 This document contains the following details:
 - Description of the Topology
@@ -35,9 +35,9 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 |----------------------|----------------------------|------------|------------------|
 | Jump-Box-Provisioner | Gateway                    | 10.0.0.1   | Ubuntu LTS 18.04 |
 | Elk                  |   Application Server       | 10.1.0.4   | Ubuntu LTS 18.04 |
-| Web-1                |   Application Server       | 10.0.0.8   | Ubuntu LTS 18.04 |
+| Web-1                |   Application Server       | 10.0.0.5   | Ubuntu LTS 18.04 |
 | Web 2                |   Application Server       | 10.0.0.9   | Ubuntu LTS 18.04 |
-| Web-3                |   Application Server       | 10.0.0.10  | Ubuntu LTS 18.04 |
+| Web-3                |   Application Server       | 10.0.0.7   | Ubuntu LTS 18.04 |
 
 ### Access Policies
 
@@ -53,7 +53,8 @@ A summary of the access policies in place can be found in the table below.
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
 | Jump Box | Yes                 | Home Ip Address      |
-| Elk-Stack| Yes                 | Home Ip Address      |            | Web-1    | No                  | 10.0.0.4             |
+| Elk-Stack| Yes                 | Home Ip Address      |            
+| Web-1    | No                  | 10.0.0.4             |
 | Web-2    | No                  | 10.0.0.4             |
 | Web-3    | No                  | 10.0.0.4             |
 
@@ -70,14 +71,17 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![TODO: Update the path with the name of your screenshot of docker ps output](Images/docker_ps_output.png)
+![](SCRIPTS/output-docker-ps.png)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- _TODO: List the IP addresses of the machines you are monitoring_
+-Web-1:10.0.0.5
+- Web-2:10.0.0.9
+- Web-3:10.0.0.7 
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Filebeat
+- Metricbeat
 
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
@@ -86,13 +90,7 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the 'elk-stack-playbook.yml' file to '/etc/ansible/roles/ directory inside the ansible container.
+- Update the 'etc/ansible/hosts file to include the Elk stack VM Ip address.
+- Run the playbook, and navigate to 'http://[your elk IP]:5601/app/kibana. to check that the installation worked as expected.
 
-_TODO: Answer the following questions to fill in the blanks:_
-- _Which file is the playbook? Where do you copy it?_
-- _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on?_
-- _Which URL do you navigate to in order to check that the ELK server is running?
-
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
