@@ -75,6 +75,7 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
+
 -Web-1:10.0.0.5
 - Web-2:10.0.0.9
 - Web-3:10.0.0.7 
@@ -84,7 +85,10 @@ We have installed the following Beats on these machines:
 - Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+
+-Filebeat parses and forwards system logs from the Web VMs to the ELK Stack in an easy to read format.
+
+-Metricbeat reports system and service statistics about the Web VMs to the ELK stack VM.
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
